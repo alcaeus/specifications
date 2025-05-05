@@ -1011,6 +1011,63 @@
       },
       "allOf": [
         {
+          "oneOf": [
+            {
+              "required": [
+                "name",
+                "object",
+                "arguments"
+              ],
+              "properties": {
+                "name": {
+                  "const": "createEntities"
+                },
+                "object": {
+                  "const": "testRunner"
+                },
+                "arguments": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "entities"
+                  ],
+                  "properties": {
+                    "entities": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "#/definitions/entity"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "anyOf":  [
+                {
+                  "not": {
+                    "properties": {
+                      "name": {
+                        "const": "createEntities"
+                      }
+                    }
+                  }
+                },
+                {
+                  "not": {
+                    "properties": {
+                      "object": {
+                        "const": "testRunner"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
           "not": {
             "required": [
               "expectError",
