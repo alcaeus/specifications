@@ -72,8 +72,7 @@
               "type": "array",
               "minItems": 1,
               "items": {
-                "type": "string",
-                "enum": ["commandStartedEvent", "commandSucceededEvent", "commandFailedEvent"]
+                "$ref": "#/definitions/eventName"
               }
             },
             "ignoreCommandMonitoringEvents": {
@@ -142,6 +141,20 @@
       }
     },
 
+    "eventName": {
+      "oneOf": [
+        { "$ref":  "#/definitions/commandEventName" }
+      ]
+    },
+    "commandEventName": {
+      "type": "string",
+      "enum": [
+        "commandStartedEvent",
+        "commandSucceededEvent",
+        "commandFailedEvent"
+      ]
+    },
+
     "expectedEventsForClient": {
       "type": "object",
       "additionalProperties": false,
@@ -160,6 +173,7 @@
       "additionalProperties": false,
       "maxProperties": 1,
       "minProperties": 1,
+      "propertyNames": { "$ref": "#/definitions/commandEventName" },
       "properties": {
         "commandStartedEvent": {
           "type": "object",

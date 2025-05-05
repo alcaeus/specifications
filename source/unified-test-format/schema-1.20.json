@@ -598,11 +598,27 @@
         }
       ]
     },
+    "eventName": {
+      "oneOf": [
+        { "$ref":  "#/definitions/commandEventName" },
+        { "$ref": "#/definitions/cmapEventName" },
+        { "$ref": "#/definitions/sdamEventName" }
+      ]
+    },
+    "commandEventName": {
+      "type": "string",
+      "enum": [
+        "commandStartedEvent",
+        "commandSucceededEvent",
+        "commandFailedEvent"
+      ]
+    },
     "expectedCommandEvent": {
       "type": "object",
       "additionalProperties": false,
       "maxProperties": 1,
       "minProperties": 1,
+      "propertyNames": { "$ref": "#/definitions/commandEventName" },
       "properties": {
         "commandStartedEvent": {
           "type": "object",
@@ -666,11 +682,28 @@
         }
       }
     },
+    "cmapEventName": {
+      "type": "string",
+      "enum": [
+        "poolCreatedEvent",
+        "poolReadyEvent",
+        "poolClearedEvent",
+        "poolClosedEvent",
+        "connectionCreatedEvent",
+        "connectionReadyEvent",
+        "connectionClosedEvent",
+        "connectionCheckOutStartedEvent",
+        "connectionCheckOutFailedEvent",
+        "connectionCheckedOutEvent",
+        "connectionCheckedInEvent"
+      ]
+    },
     "expectedCmapEvent": {
       "type": "object",
       "additionalProperties": false,
       "maxProperties": 1,
       "minProperties": 1,
+      "propertyNames": { "$ref": "#/definitions/cmapEventName" },
       "properties": {
         "poolCreatedEvent": {
           "type": "object",
@@ -744,11 +777,19 @@
         }
       }
     },
+    "sdamEventName": {
+      "type": "string",
+      "enum": [
+        "serverDescriptionChangedEvent",
+        "topologyDescriptionChangedEvent"
+      ]
+    },
     "expectedSdamEvent": {
       "type": "object",
       "additionalProperties": false,
       "maxProperties": 1,
       "minProperties": 1,
+      "propertyNames": { "$ref": "#/definitions/sdamEventName" },
       "properties": {
         "serverDescriptionChangedEvent": {
           "type": "object",

@@ -80,8 +80,7 @@
               "type": "array",
               "minItems": 1,
               "items": {
-                "type": "string",
-                "enum": ["commandStartedEvent", "commandSucceededEvent", "commandFailedEvent"]
+                "$ref": "#/definitions/eventName"
               }
             },
             "ignoreCommandMonitoringEvents": {
@@ -186,6 +185,20 @@
           "items": { "type": "object" }
         }
       }
+    },
+
+    "eventName": {
+      "oneOf": [
+        { "$ref":  "#/definitions/commandEventName" }
+      ]
+    },
+    "commandEventName": {
+      "type": "string",
+      "enum": [
+        "commandStartedEvent",
+        "commandSucceededEvent",
+        "commandFailedEvent"
+      ]
     },
 
     "expectedEventsForClient": {
